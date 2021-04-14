@@ -1,0 +1,213 @@
+<html>
+
+<head>
+    <title>Sign_in</title>
+    <link rel="stylesheet" href="CSS/Sign_in.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+		.not-ok{
+			color:red;
+			font-weight: bold;
+			padding: 3px;
+			display: inline;
+		}
+		.ok{
+			color:green;
+			font-weight: bold;
+			padding: 3px;
+			display: inline;
+		}
+	</style>
+    
+    <script src="JS/jquery-1.8.2.min.js"></script>
+
+    <script>
+           $(document).ready(function() {
+           
+                              $("#txtUid").blur(function(){
+                   var uid=$(this).val();
+                   var r=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+                   
+                   if(uid.length==0)
+                       $("#errUid").html("Fill Value").addClass("not-ok").removeClass("ok");
+                   else
+                   if(r.test(uid)==true)	
+                       $("#errUid").html("Great").addClass("ok").removeClass("not-ok");
+                   else
+                       $("#errUid").html("Fill Valid Email Id").addClass("not-ok").removeClass("ok");
+       
+               });
+               //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+               
+               $("#eye").mousedown(function(){
+                   $("#pwd").attr("type","text");
+                   $("#eye").addClass("fa-eye-slash").removeClass("fa-eye");
+               });
+               $("#eye").mouseup(function(){
+                   $("#pwd").attr("type","password");
+                   $("#eye").addClass("fa-eye").removeClass("fa-eye-slash");
+       
+               });
+               
+               //-=--=-=**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+               //lostfocus
+               $("#mob").blur(function(){
+                   //regEx: regular expression
+                   var exp=/^[0-9]{1}[0-9]{9}$/;
+                   var mob=$(this).val();
+                   var resp=exp.test(mob);
+                   if(resp==false)
+                       $("#errMob").html("Invalid Mobile Number").addClass("not-ok").removeClass("ok");
+                   else
+                           $("#errMob").html("Great").addClass("ok").removeClass("not-ok");
+               });
+               //=-=-=-=-==-=-=
+               $("#pwd").blur(function(){
+                   var r=/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+                   var pwd=$(this).val();
+                   if(r.test(pwd)==false)
+                       $("#errPwd").html("Invalid Password").addClass("not-ok").removeClass("ok");
+                   else
+                           $("#errPwd").html("Strong Password").addClass("ok").removeClass("not-ok");
+               });
+                   
+               });
+    </script>
+</head>
+
+<body>
+
+        <center>
+            <form>
+                <table width="300">
+                    <tr>
+                        <th>
+                            Sign_in
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="">Email ID/Username</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="txtUid" autofocus placeholder="Email ID/Username">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="errUid"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="pwd">Password</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="password" id="pwd" placeholder="Admin@123" style="width:90%">
+                            <i id="eye" class="fa fa-eye" aria-hidden="true"></i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="errPwd"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="mob">Mobile Number</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" id="mob" placeholder="Enter Mobile Number">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div id="errMob"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <lable>
+                            <td>Enter Date of Birth</td>
+                        </lable>
+                    </tr>
+                    <tr>
+                        <td><input type="date" required></td>
+                    </tr>
+                    <tr>
+                        <td>Enter date and time of your Sign_in</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="datetime-local" required>
+                        </td>
+                    </tr>
+                    
+                        <td>
+                            <lable for="x" required> Choose your CITY from list</lable>
+                        </td>
+                    
+                    <tr>
+                        <td> <input list="x" required>
+                            <datalist id="x">
+                                <option value="Toronto">
+                                <option value="Brampton">
+                                <option value="Nova Scotia">
+                                <option value="Vancouver">
+                                <option value="Regina">
+                                <option value="Winipeg">
+                                <option value="Montreal">
+
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Select your Technologies u know</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select multiple required>
+                                <option>C language</option>
+                                <option>C++</option>
+                                <option>Web Development </option>
+                                <option>Java </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Select your Profil pic</td>
+                    </tr>
+                    <tr>
+                        <td><input type="file" required></td>
+                    </tr>
+                    <tr>
+                        <td>Your Branch</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="br" required>CSE
+                            <input type="radio" name="br" required>ECE
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> Comments</td>
+                    </tr>
+                    <tr>
+                        <td><textarea cols="30" rows="10" maxlength="50" required></textarea></td>
+                    </tr>
+                    <br>
+                    <tr>
+                        <th>
+                            <input type="submit" class="Submit"></th>
+                    </tr>
+                </table>
+            </form>
+        </center>
+
+</body>
+</html>

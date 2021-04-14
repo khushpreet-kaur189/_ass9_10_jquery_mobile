@@ -1,0 +1,168 @@
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/Login.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+		.not-ok{
+			color:red;
+			font-weight: bold;
+			padding: 3px;
+			display: inline;
+		}
+		.ok{
+			color:green;
+			font-weight: bold;
+			padding: 3px;
+			display: inline;
+		}
+	</style>
+    <script src="JS/jquery-1.8.2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+           
+    $("#btnSignup").click(function() {
+         $("#signup").slideDown(1000);
+        });
+     //**==**=*=*=*=**=*=*-=*=-=*-=+
+            $("#cross").click(function(){
+               $("#signup").hide(1000);
+    });
+    //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+            $("#txtUid").blur(function(){
+			var uid=$(this).val();
+			var r=/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+			
+			if(uid.length==0)
+				$("#errUid").html("Fill Value").addClass("not-ok").removeClass("ok");
+			else
+			if(r.test(uid)==true)	
+				$("#errUid").html("okay").addClass("ok").removeClass("not-ok");
+			else
+				$("#errUid").html("Fill Valid Email Id").addClass("not-ok").removeClass("ok");
+
+        });
+        //*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+        
+        $("#eye").mousedown(function(){
+			$("#pwd").attr("type","text");
+			$("#eye").addClass("fa-eye-slash").removeClass("fa-eye");
+		});
+		$("#eye").mouseup(function(){
+			$("#pwd").attr("type","password");
+			$("#eye").addClass("fa-eye").removeClass("fa-eye-slash");
+
+		});
+		
+        //-=--=-=**-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+		//lostfocus
+		$("#mob").blur(function(){
+			//regEx: regular expression
+			var exp=/^[6-9]{1}[0-9]{9}$/;
+			var mob=$(this).val();
+			var resp=exp.test(mob);
+			if(resp==false)
+				$("#errMob").html("Invalid Mobile Number").addClass("not-ok").removeClass("ok");
+			else
+					$("#errMob").html("Okay").addClass("ok").removeClass("not-ok");
+		});
+		//=-=-=-=-==-=-=
+		$("#pwd").blur(function(){
+			var r=/(?=^.{8,}$)(?=.*\d)(?=.*[!@#$%^&*]+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+			var pwd=$(this).val();
+			if(r.test(pwd)==false)
+				$("#errPwd").html("Invalid Password").addClass("not-ok").removeClass("ok");
+			else
+					$("#errPwd").html("Okay").addClass("ok").removeClass("not-ok");
+		});
+            
+        });
+    </script>
+</head>
+
+<body>
+    <center>
+        <div class="callLogin" id="btnSignup">Login Here</div>
+    </center>
+    <div id="signup">
+        <foam>
+            <table border="0" width="100%">
+                <tr>
+                    <td align="right">
+                        <img  id="cross" style="width: 20px; height: 20px;" src="pics/closeico.png">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <img src="pics/fb5.jpg">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="">Email ID/Username</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="txtUid" autofocus placeholder="Email ID/Username">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="errUid"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="pwd">Password</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" id="pwd" placeholder="Admin@123" style="width:90%">
+                        <i id="eye" class="fa fa-eye" aria-hidden="true"></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="errPwd"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mob">Mobile Number</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="mob" placeholder="Enter Mobile Number">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id="errMob"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" class="btn" value="Log In">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">Forgotten account?</td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" class="newaccount" value="Create New Account">
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="button" class="Google" value="Connect With Google++">
+                    </td>
+                </tr>
+            </table>
+        </foam>
+    </div>
+</body>
+</html>
